@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Status</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/736x/9d/a4/98/9da498a73292fb787d578d78399a7d75.jpg'); /* Replace 'background-image.jpg' with your actual image file */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Text color */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 10px;
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        
+        .leave-info {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center><b style="color:aliceblue">{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <div class="container">
+        <a href="{{url_for('faculty_dashboard')}}"><button>Back</button></a>
+        <h2>Status of View of Our Leave</h2>
+        {% if view %}
+        {% for i in view %}
+        <div class="leave-info">
+            <p>Faculty Id: {{i[1]}}</p>
+            <p>Leave Type:{{i[7]}}</p>
+            <p>Start date: {{duration[0]}}</p>
+            <p>End Date :{{duration[1]}}</p>
+            <p>status : {{i[4]}}</p>
+            <p>Application Date: {{i[5]}}</p>
+                <form method="POST" action="{{url_for('view_status')}}">
+                    <input type="hidden" name="leave_id" value="{{ i[0] }}">
+                    <p><button type="submit">Delete Leave</button></p> 
+                </form>
+           
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>you did not apply for any leave</p>
+        {% endif %}
+    </div>
+</body>
+</html>

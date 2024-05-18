@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Registration</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/564x/82/ad/1e/82ad1e7a12aafdf1eb7bdccb7b737adb.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); 
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            transition: transform 0.3s ease; /* Added transition effect for hover */
+            margin-top: 50px; /* Adjust margin-top to position the container */
+            display: flex;
+            flex-direction: column; /* Ensure the container aligns its children vertically */
+            align-items: center; /* Center the content horizontally */
+        }
+
+        .container:hover {
+            transform: scale(1.05); /* Increase size on hover */
+        }
+
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"] {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Blue color */
+            color: #e6b8b8;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center><b>{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <div class="container">
+        <h2>Faculty Registration</h2>
+        <form action="#" method="POST">
+            <input type="number" name="id" placeholder="Enter Your ID" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="number" name="phone_number" placeholder="Phone Number" required>
+            <input type="text" name="address" placeholder="Address" required>
+            <input type="text" name="role" placeholder="Designation" required>
+            <input type="text" name="ccode" placeholder="Enter the faculty code" required>
+            <!-- New input fields -->
+            <label>Date_of_birth</label>
+            <input type="date" name="date_of_birth" placeholder="Date of Birth" required><br><br>
+
+            <label>Gender</label>
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+            <input type="text" name="department" placeholder="Department" required><br><br>
+            <label>Date_of_Joining</label>
+            <input type="date" name="joining_date" placeholder="Joining Date" required><br><br>
+            <input type="text" name="blood_group" placeholder="Blood Group" required>
+            <input type="text" name="supervisor" placeholder="supervisor" required>
+
+            <!-- End of new input fields -->
+            <button type="submit">Submit</button>
+        </form>
+        <a href="{{url_for('flogin')}}">already have an account! please login</a>
+        <p><a href="{{url_for('index')}}">Back</a></p>
+    </div>
+</body>
+</html>

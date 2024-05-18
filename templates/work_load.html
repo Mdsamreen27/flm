@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workload Management</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/564x/69/b7/15/69b715bd7d64363c0049eb6fd4fab0a5.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Blue color */
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center><b style="color:aliceblue">{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <div class="container">
+        <a href="{{url_for('faculty_dashboard')}}"><button>Back</button></a>
+
+        <h2>Submit Workload</h2>
+        {% if view %}
+        {% for i in view %}
+        <p> facult id :{{ i[1]}}</p>
+        <p>workload description :{{i[2]}}</p>
+        <p>Date :{{i[3]}}</p>
+        <p>status: {{i[4]}}</p>
+        <p>Administrator response date :{{i[5]}}</p>
+        <form action="#" method="POST">
+            <textarea name="workload_description" placeholder="Workload Description" rows="4" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        {% endfor %}
+        {% else %}
+        <p>submit the work before your leave</p>
+        <form action="#" method="POST">
+            <textarea name="workload_description" placeholder="Workload Description" rows="4" required></textarea>
+            <input name="dept" placeholder="Department" rows="4" required/>
+
+            <button type="submit">Submit</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>

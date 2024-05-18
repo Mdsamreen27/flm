@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            background-image: url('https://i.pinimg.com/564x/b7/35/72/b73572f38bf0c8ce13db8352755b2d01.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container-fluid {
+            padding-top: 20px;
+            height: calc(100vh - 20px);
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ADD8E6;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #black;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="/viewfaculty">View All Faculty Members</a>
+    <a href="/allocate_leaves">Allocate Leaves</a>
+    <a href="/view_leaves">View Leaves</a>
+    <a href="/view_workload">View Workload</a>
+    <a href="/algout">Logout</a>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <h2>Welcome to Admin Dashboard</h2>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view leaves</title>
+    <style>
+        body{
+          font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+       background-image: url('https://i.pinimg.com/736x/0b/7a/93/0b7a9367d1d85236751015d3b3c46572.jpg');
+        height: 100vh;
+       width: 95vw;
+       background-size: cover;
+       background-position: center;
+      }
+  
+        
+  
+          h3 {
+              text-align: center;
+              margin-top: 20px;
+          }
+  
+          table {
+             margin-left: 2%;
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 20px;
+          }
+  
+          th, td {
+              padding: 10px;
+              text-align: left;
+              border-bottom: 1px solid #ddd;
+          }
+  
+          th {
+              padding: 10px;
+              text-align: left;
+              background-color: #f5f5f5;
+              border-bottom: 1px solid #ddd;
+          }
+  
+          @media screen and (max-width: 600px) {
+              table {
+                  overflow-x: auto;
+                  display: block;
+              }
+              th, td {
+                  white-space: nowrap;
+                  min-width: 100px; /* Setting a minimum width to prevent cells from becoming too narrow */
+              }
+          }
+      </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center><b style="color: #080808;">{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <table>
+        <tr>
+            <th>Faculty Id</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Member Status</th>
+            <th>Workload Description</th>
+            <th>Submission Date</th>
+            <th>Status</th>
+            <th>Department</th>
+            <th>Acceptance Status</th>
+            <th>Assign Work</th>
+            
+        </tr>
+        {% if view %}
+            {% for i in view %}
+                <tr>
+                    <td>{{ i[0] }}</td>
+                    <td>{{ i[1] }}</td>
+                    <td>{{ i[2] }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>{{ i[4] }}</td>
+                    <td>{{ i[5] }}</td>
+                    <td>{{ i[6] }}</td>
+                    <td>{{ i[8] }}</td>
+                    <td>
+                        <form action="#" method="POST">
+                            <input type="hidden" value="{{ i[7] }}" name="work_id" style="border: none; padding: 5px;">
+                            <select name="status" style="border: none; padding: 5px;">
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                            <button style="border: none; padding: 8px;">Update Status</button>
+                        </form>
+                    </td>
+                    <td>
+                        {{i[7]}}
+                        <form action="{{url_for('assignworkload',fid=i[0] )}}" method="POST">
+                            <input type="hidden" value="{{ i[8] }}" name="dept" style="border: none; padding: 5px;">
+                            <input type="hidden" value="{{ i[7] }}" name="work_id" style="border: none; padding: 5px;">
+                        
+                            {% for k in data %}
+                            {% if i[0] == [k][0][0] %}
+                            <input type="hidden" value="{{[k][0][4]}}" name="leavecount" style="border: none; padding: 5px;">
+                            {% endif %}
+                            {% endfor %}
+                            <select name="assign" style="border: none; padding: 5px;">
+                                
+                                {% for j in data1 %}
+                                
+
+                                    {% if i[0] == j[1] and i[8]==j[2] %}
+                                    <option value="{{ j[0] }}">{{ j[0] }}</option>
+                                    {% endif %}
+                        
+                                {% endfor %}
+                            </select>
+                            <button style="border: none; padding: 8px;">Assign Work</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="10"><center><p style="color:brown;">No workload assignments</p></center></td>
+            </tr>
+        
+        {% endif %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/564x/9a/0c/ce/9a0cce98d5f6a7b316bc4633cf0f1de4.jpg'); /* Replace 'background-image.jpg' with your actual image path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .navbar {
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #CBC3E3; /* Blue color */
+            padding: 20px;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .navbar-nav {
+            list-style-type: none;
+            padding: 20px;
+            
+        }
+
+        .nav-item {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0b0a0a;
+        }
+
+        .content {
+            margin-left: 200px; /* Adjust according to your sidebar width */
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                width: 200px; /* Sidebar width */
+                height: auto;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <center><b style="color:aliceblue">{{ message }}</b></center>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<body>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('apply_leave')}}">Applying for Leave</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('view_status')}}">Leave Status</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('workload')}}">Workload</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('flogout')}}">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="container">
+            <h2>Faculty Dashboard</h2>
+            <!-- Your content goes here -->
+        </div>
+    </div>
+</body>
+</html>
